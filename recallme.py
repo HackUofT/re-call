@@ -2,6 +2,7 @@
 import os
 import sqlite3
 import twilio.twiml
+from twilio.rest import TwilioRestClient
 from flask import Flask, request, session, g, redirect, url_for, \
 abort, render_template, flash
 from contextlib import closing
@@ -18,14 +19,27 @@ def init_db():
 	db.commit()
 
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
+def text_reminder():
     """Respond to incoming calls with a simple text message."""
  
     resp = twilio.twiml.Response()
     resp.message("Go to the fucking gymmmmmmmm")
     return str(resp)
  
+
+# Your Account Sid and Auth Token from twilio.com/user/account
+account_sid = "PNa0c18cf1c7b570ca4a0a722b714bf5f4"
+auth_token  = "{{ auth_token }}"
+client = TwilioRestClient(account_sid, auth_token)
+ 
+call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
+    to="+12269841394",
+    from_="+15873169685")
+print call.sid
+
 if __name__ == '__main__':
 	app.run(debug=True)
  
+ # Download the Python helper library from twilio.com/docs/python/install
 
+ 
