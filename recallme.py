@@ -32,8 +32,9 @@ def text_reminder():
 
     resp = twilio.twiml.Response()
     resp.message("Go to the fucking gymmmmmmmm")
-    resp.say("Record your message to yourself after the tone.")
-    resp.record(maxLength="15", action="/handle-recording")
+    #resp.say("Record your message to yourself after the tone.")
+    #resp.record(maxLength="15", action="/handle-recording")
+    return redirect(url_for('/handle-recording'))
     return str(resp)
  
 @app.route("/voice", methods=['GET', 'POST'])
