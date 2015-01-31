@@ -3,12 +3,15 @@
 {% if session.logged_in %}
 <form action="{{ url_for(’add_entry’) }}" method=post class=add-entry>
 	<dl>
-		<dt>Title:
-			<dd><input type=text size=30 name=title>
-				<dt>Text:
-			<dd><textarea name=text rows=5 cols=40></textarea>
-			<dd><input type=submit value=Share>
-		</dl>
+		<dt>Event Title:
+			<dd><input type=text size=30 name=eventTitle>
+		<dt>Event Time:
+			<dd><input type=submit size=30 name=eventTime>
+		<dt>Event Reminder Time:
+			<dd><input type=submit size=30 name=eventReminderTime>
+		<dt>Event Reminder Num:
+			<dd><input type=submit size=30 name=eventReminderNum>
+	</dl>
 </form>
 
 {% endif %}
