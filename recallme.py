@@ -1,50 +1,61 @@
-# all the imports
-import os
-import sqlite3
+from flask import Flask, request, redirect
+from __future__ import with_statement   # Only necessary for Python 2.5
 import twilio.twiml
-from twilio.rest import TwilioRestClient
-from flask import Flask, request, session, g, redirect, url_for, \
-abort, render_template, flash
-from contextlib import closing
-
+ 
 app = Flask(__name__)
-
-# Your Account Sid and Auth Token from twilio.com/user/account
-account_sid = "AC23e9837805043e0ab73db0164f2ae9e1"
-auth_token  = "0e8bdf4642daf804bbd5c2c5bf36b4be"
-client = TwilioRestClient(account_sid, auth_token)
-
-def connect_db():
-	return sqlite3.connect(app.config['DATABASE'])
-
-def init_db():
-	with closing(connect_db()) as db:
-		with app.open_resource('schema.sql', mode='r') as f:
-			db.cursor().executescript(f.read())
-	db.commit()
-
+ 
+callers = {
+    "+14158675309": "Curious George",
+    "+14158675310": "Boots",
+    "+14158675311": "Virgil",
+}
+ 
 @app.route("/", methods=['GET', 'POST'])
-def text_reminder():
-    """Respond to incoming calls with a simple text message."""
+def hello_monkey():
+    from_number = request.values.get('From', None)
+    if from_number in callers:
+        caller = callers[from_number]
+    else:
+        caller = "Monkey"
  
     resp = twilio.twiml.Response()
-    resp.message("Go to the fucking gymmmmmmmm")
+    # Greet the caller by name
+    resp.say("Hello " + caller)
+    # Play an mp3
+    resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
+ 
+    # Gather digits.
+    with resp.gather(numDigits=1, action="/handle-key", method="POST") as g:
+        g.say("""To speak to a real monkey, press 1. 
+                 Press 2 to record your own monkey howl.
+                 Press any other key to start over.""")
+ 
     return str(resp)
  
-@app.route("/voice", methods=['GET', 'POST'])
-def voice_reminder():
-	call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
-    	to="+12269841394",
-    	from_="+15873169685")
-	print call.sid
-
-@app.route("/record", methods=['GET', 'POST'])
-def record():
-	 resp = twilio.twiml.Response()
-     resp.say("Record your monkey howl after the tone.")
-     resp.record(maxLength="30", action="/handle-recording")
-     return str(resp)
-
+@app.route("/handle-key", methods=['GET', 'POST'])
+def handle_key():
+    """Handle key press from a user."""
+ 
+    digit_pressed = request.values.get('Digits', None)
+    if digit_pressed == "1":
+        resp = twilio.twiml.Response()
+        # Dial (310) 555-1212 - connect that number to the incoming caller.
+        resp.dial("+13105551212")
+        # If the dial fails:
+        resp.say("The call failed, or the remote party hung up. Goodbye.")
+ 
+        return str(resp)
+ 
+    elif digit_pressed == "2":
+        resp = twilio.twiml.Response()
+        resp.say("Record your monkey howl after the tone.")
+        resp.record(maxLength="30", action="/handle-recording")
+        return str(resp)
+ 
+    # If the caller pressed anything but 1, redirect them to the homepage.
+    else:
+        return redirect("/")
+ 
 @app.route("/handle-recording", methods=['GET', 'POST'])
 def handle_recording():
     """Play back the caller's recording."""
@@ -56,10 +67,6 @@ def handle_recording():
     resp.play(recording_url)
     resp.say("Goodbye.")
     return str(resp)
-
-if __name__ == '__main__':
-	app.run(debug=True)
  
- # Download the Python helper library from twilio.com/docs/python/install
-
- 
+if __name__ == "__main__":
+    app.run(debug=True)
