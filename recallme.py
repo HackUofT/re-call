@@ -26,16 +26,12 @@ def init_db():
 @app.route("/", methods=['GET', 'POST'])
 def text_reminder():
     """Respond to incoming calls with a simple text message."""
- 
-    resp = twilio.twiml.Response()
-    resp.message("Go to the fucking gymmmmmmmm")
-    return str(resp)
 
-def hello_monkey():
     #get number from caller
     from_number = request.values.get('From', None)
 
     resp = twilio.twiml.Response()
+    resp.message("Go to the fucking gymmmmmmmm")
     resp.say("Record your message to yourself after the tone.")
     resp.record(maxLength="15", action="/handle-recording")
     return str(resp)
