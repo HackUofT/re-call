@@ -53,19 +53,8 @@ def text_reminder():
     resp.record(maxLength="15", action="/handle-recording")
     return str(resp)
 
-@app.route('/tasks', methods=['POST', 'GET'])
-def show_entries():
-    cur = g.db.execute('select title, text from entries order by id desc')
-    entries = [dict(eventTitle=row[0], eventTime=row[1], eventReminderTime=row[2], eventReminderNum=row[3]) for row in cur.fetchall()]
-    return render_template('show_entries.html', entries=entries)
 
-@app.route('/add', methods=['POST', 'GET'])
-def add_entry():
-    g.db.execute('insert into entries (event_title, event_time, event_reminder_time, event_reminder_num) values (?, ?)',
-                [request.form['title'], request.form['text']])
-    g.db.commit()
-    flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
+
  
 @app.route("/voice", methods=['GET', 'POST'])
 def voice_reminder():
