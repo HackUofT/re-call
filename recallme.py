@@ -9,6 +9,11 @@ from contextlib import closing
 
 app = Flask(__name__)
 
+# Your Account Sid and Auth Token from twilio.com/user/account
+account_sid = "AC23e9837805043e0ab73db0164f2ae9e1"
+auth_token  = "0e8bdf4642daf804bbd5c2c5bf36b4be"
+client = TwilioRestClient(account_sid, auth_token)
+
 def connect_db():
 	return sqlite3.connect(app.config['DATABASE'])
 
@@ -26,16 +31,12 @@ def text_reminder():
     resp.message("Go to the fucking gymmmmmmmm")
     return str(resp)
  
-
-# Your Account Sid and Auth Token from twilio.com/user/account
-account_sid = "AC23e9837805043e0ab73db0164f2ae9e1"
-auth_token  = "0e8bdf4642daf804bbd5c2c5bf36b4be"
-client = TwilioRestClient(account_sid, auth_token)
- 
-call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
-    to="+12269841394",
-    from_="+15873169685")
-print call.sid
+@app.route("/voice", methods=['GET', 'POST'])
+def voice_reminder():
+	call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
+    	to="+12269841394",
+    	from_="+15873169685")
+	print call.sid
 
 if __name__ == '__main__':
 	app.run(debug=True)
