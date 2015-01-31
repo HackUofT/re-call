@@ -28,8 +28,8 @@ def text_reminder():
  
 
 # Your Account Sid and Auth Token from twilio.com/user/account
-account_sid = "PNa0c18cf1c7b570ca4a0a722b714bf5f4"
-auth_token  = "{{ auth_token }}"
+account_sid = "AC23e9837805043e0ab73db0164f2ae9e1"
+auth_token  = "0e8bdf4642daf804bbd5c2c5bf36b4be"
 client = TwilioRestClient(account_sid, auth_token)
  
 call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
