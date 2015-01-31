@@ -10,15 +10,6 @@ def hello_monkey():
     from_number = request.values.get('From', None)
 
     resp = twilio.twiml.Response()
- 
-    resp.say("""Record your own monkey howl.""")
- 
-    return str(resp)
- 
-@app.route("/handle-key", methods=['GET', 'POST'])
-def handle_key():
-
-    resp = twilio.twiml.Response()
     resp.say("Record your monkey howl after the tone.")
     resp.record(maxLength="30", action="/handle-recording")
     return str(resp)
