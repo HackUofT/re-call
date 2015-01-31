@@ -10,8 +10,8 @@ def hello_monkey():
     from_number = request.values.get('From', None)
 
     resp = twilio.twiml.Response()
-    resp.say("Record your monkey howl after the tone.")
-    resp.record(maxLength="30", action="/handle-recording")
+    resp.say("Record your message to yourself after the tone.")
+    resp.record(maxLength="15", action="/handle-recording")
     return str(resp)
  
  
@@ -20,6 +20,7 @@ def handle_recording():
     """Play back the caller's recording."""
  
     recording_url = request.values.get("RecordingUrl", None)
+    return recording_url
  
     resp = twilio.twiml.Response()
     resp.say("Thanks for howling... take a listen to what you howled.")
