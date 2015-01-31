@@ -12,3 +12,17 @@ Swift iOS app
 
 ##details
 Twilio number: +15873169685
+
+##learning resources
+
+###flask + sqlite3 database tutorial for making a microblog
+http://flask.pocoo.org/docs/0.10/tutorial/schema/#tutorial-schema
+
+###flask + heroku tutorial
+https://devcenter.heroku.com/articles/getting-started-with-python-o#prerequisites
+
+###swift photo filter tutorial
+https://developer.apple.com/swift/blog/?id=16
+
+###heroku + python tutorial
+https://devcenter.heroku.com/articles/getting-started-with-python#introduction
