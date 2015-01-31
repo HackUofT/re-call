@@ -36,7 +36,7 @@ def before_request():
 
 @app.teardown_request
 def teardown_request(exception):
-    db = getattr(g, ’db’, None)
+    db = getattr(g, 'db', None)
     if db is not None:
         db.close()
 
