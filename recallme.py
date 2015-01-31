@@ -16,7 +16,7 @@ def hello_monkey():
     resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
  
     # Gather digits.
-    with resp.gather(numDigits=1, action="/handle-key", method="POST") as g:
+    with resp.gather(action="/handle-key", method="POST") as g:
         g.say("""Record your own monkey howl.""")
  
     return str(resp)
