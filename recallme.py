@@ -1,4 +1,5 @@
 # all the imports
+import os
 import sqlite3
 import twilio.twiml
 from flask import Flask, request, session, g, redirect, url_for, \
