@@ -34,8 +34,8 @@ def text_reminder():
     resp.message("Go to the fucking gymmmmmmmm")
     #resp.say("Record your message to yourself after the tone.")
     #resp.record(maxLength="15", action="/handle-recording")
-    return redirect(url_for('/handle-recording'))
     return str(resp)
+    return redirect(url_for('/handle-recording'))
  
 @app.route("/voice", methods=['GET', 'POST'])
 def voice_reminder():
