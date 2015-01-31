@@ -10,24 +10,14 @@ def hello_monkey():
     from_number = request.values.get('From', None)
 
     resp = twilio.twiml.Response()
-    # Greet the caller by name
-    resp.say("Hello ")
-    # Play an mp3
-    resp.play("http://demo.twilio.com/hellomonkey/monkey.mp3")
- 
-    # Gather digits.
-    with resp.gather(action="/handle-key", method="POST") as g:
-        g.say("""Record your own monkey howl.""")
- 
+    resp.say("Record your monkey howl after the tone.")
+    resp.record(maxLength="30", action="/handle-recording")
     return str(resp)
  
 @app.route("/handle-key", methods=['GET', 'POST'])
 def handle_key():
 
-    resp = twilio.twiml.Response()
-    resp.say("Record your monkey howl after the tone.")
-    resp.record(maxLength="30", action="/handle-recording")
-    return str(resp)
+    
  
  
 @app.route("/handle-recording", methods=['GET', 'POST'])
