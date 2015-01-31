@@ -14,6 +14,7 @@ USERNAME = 'admin'
 PASSWORD = 'default'
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 
 # Your Account Sid and Auth Token from twilio.com/user/account
 account_sid = "AC23e9837805043e0ab73db0164f2ae9e1"
@@ -27,7 +28,17 @@ def init_db():
     with closing(connect_db()) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
-    db.commit()
+        db.commit()
+
+@app.before_request
+def before_request():
+    g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, ’db’, None)
+    if db is not None:
+        db.close()
 
 @app.route("/", methods=['GET', 'POST'])
 def text_reminder():
@@ -41,6 +52,20 @@ def text_reminder():
     resp.say("Record your message to yourself after the tone.")
     resp.record(maxLength="15", action="/handle-recording")
     return str(resp)
+
+@app.route('/tasks')
+def show_entries():
+    cur = g.db.execute('select title, text from entries order by id desc')
+    entries = [dict(event_title=row[0], event_time=row[1], event_reminder_time=row[2], event_reminder_num=row[3]) for row in cur.fetchall()]
+    return render_template('show_entries.html', entries=entries)
+
+@app.route('/add', methods=['POST'])
+def add_entry():
+    g.db.execute('insert into entries (event_title, event_time, event_reminder_time, event_reminder_num) values (?, ?)',
+                [request.form['title'], request.form['text']])
+    g.db.commit()
+    flash('New entry was successfully posted')
+    return redirect(url_for('show_entries'))
  
 @app.route("/voice", methods=['GET', 'POST'])
 def voice_reminder():
