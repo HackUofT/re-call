@@ -17,9 +17,7 @@ def hello_monkey():
  
     # Gather digits.
     with resp.gather(numDigits=1, action="/handle-key", method="POST") as g:
-        g.say("""To speak to a real monkey, press 1. 
-                 Press 2 to record your own monkey howl.
-                 Press any other key to start over.""")
+        g.say("""Record your own monkey howl.""")
  
     return str(resp)
  
@@ -27,8 +25,6 @@ def hello_monkey():
 def handle_key():
     """Handle key press from a user."""
  
-    digit_pressed = request.values.get('Digits', None)
-    if digit_pressed == "1":
         resp = twilio.twiml.Response()
         # Dial (310) 555-1212 - connect that number to the incoming caller.
         resp.dial("+13105551212")
@@ -37,16 +33,7 @@ def handle_key():
  
         return str(resp)
  
-    elif digit_pressed == "2":
-        resp = twilio.twiml.Response()
-        resp.say("Record your monkey howl after the tone.")
-        resp.record(maxLength="30", action="/handle-recording")
-        return str(resp)
- 
-    # If the caller pressed anything but 1, redirect them to the homepage.
-    else:
-        return redirect("/")
- 
+
 @app.route("/handle-recording", methods=['GET', 'POST'])
 def handle_recording():
     """Play back the caller's recording."""
