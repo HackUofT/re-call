@@ -7,6 +7,12 @@ from flask import Flask, request, session, g, redirect, url_for, \
 abort, render_template, flash
 from contextlib import closing
 
+DATABASE = 'tmp/recallme.db'
+DEBUG = True
+SECRET_KEY = 'development_key'
+USERNAME = 'admin'
+PASSWORD = 'default'
+
 app = Flask(__name__)
 
 # Your Account Sid and Auth Token from twilio.com/user/account
@@ -32,10 +38,9 @@ def text_reminder():
 
     resp = twilio.twiml.Response()
     resp.message("Go to the fucking gymmmmmmmm")
-    #resp.say("Record your message to yourself after the tone.")
-    #resp.record(maxLength="15", action="/handle-recording")
+    resp.say("Record your message to yourself after the tone.")
+    resp.record(maxLength="15", action="/handle-recording")
     return str(resp)
-    return redirect(url_for('/handle-recording'))
  
 @app.route("/voice", methods=['GET', 'POST'])
 def voice_reminder():

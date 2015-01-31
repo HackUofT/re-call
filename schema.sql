@@ -1,6 +1,8 @@
 drop table if exists entries;
 create table entries (
 	id integer primary key autoincrement,
-	title text not null,
-	text text not null
+	event_title text not null,
+	event_time text not null,
+	event_reminder_time text not null,
+	event_reminder_num text not null
 );
