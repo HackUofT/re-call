@@ -1,20 +1,20 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
-from rq import Queue
-import worker
-import requests
+# from apscheduler.schedulers.blocking import BlockingScheduler
+# from rq import Queue
+# import worker
+# import requests
 
 
-sched = BlockingScheduler()
+# sched = BlockingScheduler()
 
-def new_reminder(reminderDate):
-	@sched.add_job(my_job, 'date', run_date=reminderDate, args=['text'])
-#    @sched.interval_schedule(seconds=2)
-	def job_function():
-		queue = Queue(connection=conn)
-		result = queue.enqueue(voice_reminder, 'http://heroku.com')
-		return()
-#        print "Hello World"
+# def new_reminder(reminderDate):
+# 	@sched.add_job(my_job, 'date', run_date=reminderDate, args=['text'])
+# #    @sched.interval_schedule(seconds=2)
+# 	def job_function():
+# 		queue = Queue(connection=conn)
+# 		result = queue.enqueue(voice_reminder, 'http://heroku.com')
+# 		return()
+# #        print "Hello World"
 
 
 
-sched.start()
+# sched.start()

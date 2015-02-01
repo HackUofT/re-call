@@ -74,7 +74,8 @@ def add_entry():
                  [request.form['title'], request.form['audioFile'], request.form['text'], request.form['eventTime'], request.form['eventDate'], request.form['reminderTime'], request.form['reminderDate']])
 
     #NEED TO SCHEDULE REMINDER
-    new_reminder(request.form['reminderDate'])
+    #new_reminder(request.form['reminderDate'])
+    voice_reminder()
 
     g.db.commit()
     flash('New entry was successfully posted')
