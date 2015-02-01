@@ -44,7 +44,7 @@ def teardown_request(exception):
         db.close()
 
 @app.route("/", methods=['GET', 'POST'])
-def text_reminder():
+def show_entries():
     """Respond to incoming calls with a simple text message."""
 
     #get number from caller
@@ -63,8 +63,8 @@ def text_reminder():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
-    g.db.execute('insert into entries (title, text) values (?, ?)',
-                 [request.form['title'], request.form['text']])
+    g.db.execute('insert into entries (title, audioFile, text, eventTime, eventDate, reminderTime, reminderDate) values (?, ?, ?, ?, ?, ?, ?)',
+                 [request.form['title'], "", request.form['text'], "", "", "", ""])
     g.db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
