@@ -11,9 +11,11 @@ You've just had delicious poutine at U of T Hacks and you really need to go to t
 ![alt text](https://github.com/HackUofT/re-call/blob/master/imagesForReadMe/addscreen.jpg "Reminder times")
 
 ##stack
-Flask
-Heroku
-Swift iOS app
+* Flask
+* Heroku
+* Swift iOS app
+* Sqlite3
+* Twilio API
 
 ##details
 Twilio number: +15873169685
