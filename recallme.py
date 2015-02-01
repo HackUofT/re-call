@@ -62,6 +62,7 @@ def voice_reminder():
         to="+16478683107", 
         from_="+15873169685")
     print call.sid 
+    return(call.sid)
  
 @app.route("/handle-recording", methods=['GET', 'POST'])
 def handle_recording():
