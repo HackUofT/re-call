@@ -27,6 +27,12 @@ https://developer.apple.com/swift/blog/?id=16
 ###heroku + python tutorial
 https://devcenter.heroku.com/articles/getting-started-with-python#introduction
 
+###APScheduler + heroku tutorial
+https://devcenter.heroku.com/articles/clock-processes-python
+
+###Redis queue tutorial (for running scheduled class outside of clock.py)
+https://devcenter.heroku.com/articles/python-rq
+
 
 #### development notes
 the flask\_heroku_sqlite3 folder contains a microblog app that allows you to input an audio file (one of "static/a.wav", "static/b.wav", ... , "static/g.wav") or text, plus a title, for a microblog post. it has all the infrastructure necessary to store data from the re-call.me app. We still have to make the Swift front end, and get Swift to save recordings into the static folder and put data entries into the database (and retreive them).
