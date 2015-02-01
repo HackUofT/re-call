@@ -7,9 +7,10 @@ from flask import Flask, request, session, g, redirect, url_for, \
 abort, render_template, flash
 from contextlib import closing
 
-DATABASE = 'tmp/recallme.db'
+# configuration
+DATABASE = '/tmp/flaskr.db'
 DEBUG = True
-SECRET_KEY = 'development_key'
+SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
