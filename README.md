@@ -44,3 +44,5 @@ run the following commands:
 ```
 
 go to app URL /voice to rickroll the hard-coded phone number
+
+database is called remindme.db
