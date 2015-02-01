@@ -35,10 +35,10 @@ the flask\_heroku_sqlite3 folder contains a microblog app that allows you to inp
 run the following commands:
 
 ```
-\> heroku login
-\> pip freeze > requirements.txt
-\> heroku create
-\> git push heroku master
-\> heroku ps:scale web=1
-\> heroku open
+> heroku login
+> pip freeze > requirements.txt
+> heroku create
+> git push heroku master
+> heroku ps:scale web=1
+> heroku open
 ```
