@@ -42,3 +42,5 @@ run the following commands:
 > heroku ps:scale web=1
 > heroku open
 ```
+
+go to app URL /voice to rickroll the hard-coded phone number
