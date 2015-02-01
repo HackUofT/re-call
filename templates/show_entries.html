@@ -5,19 +5,16 @@
 	<dl>
 		<dt>Event Title:
 			<dd><input type=text size=30 name=eventTitle>
-		<dt>Event Time:
-			<dd><input type=submit size=30 name=eventTime>
-		<dt>Event Reminder Time:
-			<dd><input type=submit size=30 name=eventReminderTime>
-		<dt>Event Reminder Num:
-			<dd><input type=submit size=30 name=eventReminderNum>
+		<dt>Text:
+                        <dd><textarea name=text rows=5 cols=40></textarea>
+                        <dd><input type=submit value=Share>
 	</dl>
 </form>
 
 {% endif %}
 <ul class=entries>
 {% for entry in entries %}
-	<li><h2>{{ entry.event_title }}</h2>{{ entry.event_time|safe }}
+	<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
 	{% else %}
 	<li><em>Unbelievable. No entries here so far</em>
 	{% endfor %}
