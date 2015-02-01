@@ -35,7 +35,7 @@ the flask\_heroku_sqlite3 folder contains a microblog app that allows you to inp
 run the following commands:
 
 ```
-> sudo pip install Flask gunicorn schedule
+> sudo pip install Flask gunicorn schedule twilio
 > heroku login
 > heroku create
 > git push heroku master
@@ -44,3 +44,14 @@ run the following commands:
 ```
 
 go to app URL /voice to rickroll the hard-coded phone number
+
+database is called remindme.db
+
+to run command locally:
+```
+> virtualenv venv
+> source venv/bin/activate
+> pip install Flask gunicorn schedule twilio
+> foreman start
+```
+app will be hosted at http://localhost:5000/
