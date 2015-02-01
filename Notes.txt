@@ -1,0 +1,7 @@
+For debugging, perhaps the requirements of apscheduler, listed as 3.0.0., whereas you may be using 3.0.1 , etc.
+
+
+Assuming you are using: Apscheduler.triggers.date.
+
+Todo: find out how to submit: date/time stamp for actual event, reminder time, event name, and (automatically generated event id)
+	on heroku sqlite3
