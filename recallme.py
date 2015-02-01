@@ -31,6 +31,8 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+init_db()
+
 @app.before_request
 def before_request():
     g.db = connect_db()
