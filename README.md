@@ -35,7 +35,7 @@ the flask\_heroku_sqlite3 folder contains a microblog app that allows you to inp
 run the following commands:
 
 ```
-> sudo pip install Flask gunicorn
+> sudo pip install Flask gunicorn schedule
 > heroku login
 > heroku create
 > git push heroku master
