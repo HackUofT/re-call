@@ -1,5 +1,5 @@
 import os
-
+import recallme
 import redis
 from rq import Worker, Queue, Connection
 

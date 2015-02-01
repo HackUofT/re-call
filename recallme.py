@@ -1,6 +1,8 @@
 # all the imports
 import os
 import sqlite3
+import clock
+import jsonify
 import twilio.twiml
 from twilio.rest import TwilioRestClient
 from flask import Flask, request, session, g, redirect, url_for, \
@@ -63,8 +65,16 @@ def show_entries():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
+
+
+
+
+    # line below needs to be edited to put json into database from post request
     g.db.execute('insert into entries (title, audioFile, text, eventTime, eventDate, reminderTime, reminderDate) values (?, ?, ?, ?, ?, ?, ?)',
-                 [request.form['title'], "", request.form['text'], "", "", "", ""])
+                 [request.form['title'], request.form['audioFile'], request.form['text'], request.form['eventTime'], request.form['eventDate'], request.form['reminderTime'], request.form['reminderDate']])
+
+    #NEED TO SCHEDULE REMINDER
+
     g.db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
@@ -94,3 +104,5 @@ def handle_recording():
 if __name__ == '__main__':
     app.run(debug=True)
  
+
+
