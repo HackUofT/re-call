@@ -37,7 +37,6 @@ run the following commands:
 ```
 > sudo pip install Flask gunicorn
 > heroku login
-> pip freeze > requirements.txt
 > heroku create
 > git push heroku master
 > heroku ps:scale web=1
