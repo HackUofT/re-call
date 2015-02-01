@@ -46,6 +46,8 @@ run the following commands:
 > heroku create
 > git push heroku master
 > heroku ps:scale web=1
+> heroku scale worker=1
+> heroku ps:scale clock=1
 > heroku open
 ```
 
