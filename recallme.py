@@ -59,7 +59,7 @@ def text_reminder():
 @app.route("/voice", methods=['GET', 'POST'])
 def voice_reminder():
     call = client.calls.create(url="http://demo.twilio.com/docs/voice.xml",
-        to="+12269841394",
+        to="+16478683107", 
         from_="+15873169685")
     print call.sid 
  
