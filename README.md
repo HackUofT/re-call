@@ -30,3 +30,12 @@ https://devcenter.heroku.com/articles/getting-started-with-python#introduction
 
 #### development notes
 the flask\_heroku_sqlite3 folder contains a microblog app that allows you to input an audio file (one of "static/a.wav", "static/b.wav", ... , "static/g.wav") or text, plus a title, for a microblog post. it has all the infrastructure necessary to store data from the re-call.me app. We still have to make the Swift front end, and get Swift to save recordings into the static folder and put data entries into the database (and retreive them).
+
+### running aishi's flask/twilio/heroku app
+run the following commands:
+> heroku login
+> pip freeze > requirements.txt
+> heroku create
+> git push heroku master
+> heroku ps:scale web=1
+> heroku open
