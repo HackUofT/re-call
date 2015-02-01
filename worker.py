@@ -4,7 +4,7 @@ import redis
 from rq import Worker, Queue, Connection
 
 
-result = queue.enqueue(voice_reminder, 'http://heroku.com')
+
 
 listen = ['high', 'default', 'low']
 

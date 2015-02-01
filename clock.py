@@ -11,6 +11,7 @@ def new_reminder(reminderDate):
 #    @sched.interval_schedule(seconds=2)
 	def job_function():
 		queue = Queue(connection=conn)
+		result = queue.enqueue(voice_reminder, 'http://heroku.com')
 		return()
 #        print "Hello World"
 
