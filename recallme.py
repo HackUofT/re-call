@@ -68,7 +68,7 @@ def add_entry():
 
 
 
-    # line below needs to be edited to put json into database from post request
+    # line below needs to be edited to put form into database from post request
     g.db.execute('insert into entries (title, audioFile, text, eventTime, eventDate, reminderTime, reminderDate) values (?, ?, ?, ?, ?, ?, ?)',
                  [request.form['title'], request.form['audioFile'], request.form['text'], request.form['eventTime'], request.form['eventDate'], request.form['reminderTime'], request.form['reminderDate']])
 
