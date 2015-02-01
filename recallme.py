@@ -2,7 +2,6 @@
 import os
 import sqlite3
 import clock
-import jsonify
 import twilio.twiml
 from twilio.rest import TwilioRestClient
 from flask import Flask, request, session, g, redirect, url_for, \
