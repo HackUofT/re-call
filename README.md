@@ -8,7 +8,7 @@ You've just had delicious poutine at U of T Hacks and you really need to go to t
 ##screen shots
 ![alt text](https://github.com/re-call/imagesForReadMe/mainscreen.jpg "Main screen")
 ![alt text](https://github.com/re-call/imagesForReadMe/addtaskscreen.jpg "Add a reminder")
-![alt text](https://github.com/re-call/imagesForReadMe/addscreen.jpg "Reminder times")
+![alt text](https://github.com/HackUofT/re-call/blob/master/imagesForReadMe/addscreen.jpg "Reminder times")
 
 ##stack
 Flask
